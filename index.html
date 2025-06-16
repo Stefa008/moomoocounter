@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>MooMoo Counter - Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="moomoo.ico" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka&display=swap" rel="stylesheet">
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Fredoka', sans-serif;
+      background-color: #fff700;
+      color: #333;
+    }
+
+    .page-wrapper {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    main {
+      flex: 1;
+      padding-top: 100px;
+      text-align: center;
+    }
+
+    /* ===== NAV ===== */
+    nav {
+      background-color: #333;
+      padding: 15px 0;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      border-radius: 0 0 20px 20px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    }
+
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+
+    nav ul li {
+      display: inline;
+      margin: 0 10px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+      font-size: 18px;
+      background-color: #4CAF50;
+      padding: 10px 20px;
+      border-radius: 25px;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    nav ul li a:hover {
+      background-color: #45a049;
+      transform: scale(1.05);
+      color: #fff700;
+    }
+
+    h1 {
+      color: #000;
+      font-size: 2.5em;
+      margin-bottom: 20px;
+    }
+
+    img {
+      width: 256px;
+      height: auto;
+      margin-top: 20px;
+    }
+
+    /* ===== FOOTER ===== */
+    .site-footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 20px 10px;
+      font-size: 16px;
+      font-family: 'Fredoka', sans-serif;
+      border-radius: 20px 20px 0 0;
+      box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    .site-footer a {
+      color: #fff700;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .site-footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 480px) {
+      .site-footer {
+        font-size: 14px;
+        padding: 15px 5px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-wrapper">
+    <nav>
+      <ul>
+        <li><a href="bs.html">Bestiame</a></li>
+        <li><a href="dc.html">Debiti/Crediti</a></li>
+        <li><a href="fnt.html">Fornitori</a></li>
+        <li><a href="cli.html">Clienti</a></li>
+      </ul>
+    </nav>
+
+    <main>
+      <h1>
+        <img src="moomoo.ico" alt="Icona MuccaBay">Benvenuto su MooMoo Counter<img src="moomoo.ico" alt="Icona MuccaBay">
+      </h1>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-content">
+        <p>&copy; 2025 Stefano Filippi, Alberto Aquilini. Tutti i diritti riservati.</p>
+        <p><a href="mailto:filippistefano602@gmail.com">filippistefano602@gmail.com</a></p>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>

@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MooMoo Counter - Fornitori</title>
+  <link rel="icon" href="moomoo.ico" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      font-family: 'Fredoka', sans-serif;
+      background-color: #ffca39;
+      color: #333;
+      text-align: center;
+      line-height: 1.6;
+    }
+
+    .page-wrapper {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    main {
+      flex: 1;
+      padding-top: 100px;
+    }
+
+    h1 {
+      color: #000000;
+      font-size: 2.5em;
+      margin-bottom: 20px;
+      padding: 0 15px;
+    }
+
+    button {
+      display: inline-block;
+      text-align: center;
+      white-space: nowrap;
+      color: #FFFFFF;
+      text-decoration: none;
+      line-height: 1.2;
+      font-weight: normal;
+      font-family: sans-serif;
+      font-size: 18px;
+      background-color: #007BFF;
+      border-radius: 10px;
+      padding: 10px 20px;
+      border: 1px solid #006FE6;
+      cursor: pointer;
+    }
+
+    /* ===== DESKTOP NAVIGATION ===== */
+    .desktop-nav {
+      background-color: #333;
+      padding: 15px 0;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      border-radius: 0 0 20px 20px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    }
+
+    .desktop-nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .desktop-nav ul li {
+      margin: 5px 10px;
+    }
+
+    .desktop-nav ul li a {
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+      font-size: 18px;
+      background-color: #4CAF50;
+      padding: 10px 20px;
+      border-radius: 25px;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .desktop-nav ul li a:hover {
+      background-color: #45a049;
+      transform: scale(1.05);
+      color: #fff700;
+    }
+
+    /* ===== MOBILE SIDEBAR ===== */
+    .menu-toggle {
+      display: none;
+      font-size: 30px;
+      color: white;
+      background: none;
+      border: none;
+      cursor: pointer;
+      position: fixed;
+      top: 15px;
+      left: 20px;
+      z-index: 1100;
+    }
+
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: -250px;
+      width: 250px;
+      height: 100%;
+      background-color: #333;
+      padding-top: 60px;
+      transition: left 0.3s ease;
+      z-index: 1050;
+      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.4);
+    }
+
+    .sidebar.active {
+      left: 0;
+    }
+
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .sidebar ul li {
+      margin: 10px 0;
+    }
+
+    .sidebar ul li a {
+      display: block;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      background-color: #4CAF50;
+      padding: 10px 20px;
+      border-radius: 25px;
+      margin: 0 15px;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .sidebar ul li a:hover {
+      background-color: #45a049;
+      transform: scale(1.05);
+      color: #fff700;
+    }
+
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1040;
+    }
+
+    .overlay.active {
+      display: block;
+    }
+
+    .google-sheet-container {
+      position: relative;
+      width: 90%;
+      max-width: 1200px;
+      margin: 20px auto;
+      border: 1px solid #ccc;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      background-color: #fff;
+      overflow: hidden;
+      padding-bottom: 56.25%;
+      height: 0;
+    }
+
+    .google-sheet-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    /* ===== MEDIA QUERIES ===== */
+    @media (max-width: 768px) {
+      body {
+        padding-top: 70px;
+      }
+
+      .desktop-nav {
+        display: none;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      h1 {
+        font-size: 2em;
+      }
+
+      .google-sheet-container {
+        width: 95%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 1.8em;
+      }
+
+      .google-sheet-container {
+        width: 98%;
+      }
+
+      .site-footer {
+        font-size: 14px;
+        padding: 15px 5px;
+      }
+    }
+
+    @media (min-width: 769px) {
+      .menu-toggle,
+      .sidebar,
+      .overlay {
+        display: none !important;
+      }
+    }
+
+    /* ===== FOOTER ===== */
+    .site-footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 20px 10px;
+      font-size: 16px;
+      font-family: 'Fredoka', sans-serif;
+      border-radius: 20px 20px 0 0;
+      box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    .site-footer a {
+      color: #fff700;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .site-footer a:hover {
+      text-decoration: underline;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="page-wrapper">
+
+    <!-- DESKTOP NAV -->
+    <nav class="desktop-nav">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="bs.html">Bestiame</a></li>
+        <li><a href="fnt.html">Fornitori</a></li>
+        <li><a href="cli.html">Clienti</a></li>
+      </ul>
+    </nav>
+
+    <!-- HAMBURGER BUTTON -->
+    <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+
+    <!-- MOBILE SIDEBAR -->
+    <div class="sidebar" id="sidebar">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="bs.html">Bestiame</a></li>
+        <li><a href="dc.html">Debiti/Crediti</a></li>
+        <li><a href="cli.html">Clienti</a></li>
+        
+      </ul>
+    </div>
+
+    <!-- OVERLAY -->
+    <div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
+
+    <main>
+      <h1>Fornitori</h1>
+
+      <div class="google-sheet-container">
+        <iframe
+          src="https://docs.google.com/spreadsheets/d/1FNCTZzK0JLF-etbmRnnHQzsPXDNI9mbZaDUm76t9Y6E/edit?usp=sharing&single=true&widget=true&headers=false"
+          allowfullscreen
+          sandbox="allow-scripts allow-same-origin allow-forms">
+        </iframe>
+      </div>
+
+      <button class="button">
+        <a href="https://docs.google.com/spreadsheets/d/1FNCTZzK0JLF-etbmRnnHQzsPXDNI9mbZaDUm76t9Y6E" style="color:white;text-decoration:none;">Apri Google Sheets</a>
+      </button><br><br>
+    </main>
+
+  </div>
+
+  <footer class="site-footer">
+    <div class="footer-content">
+      <p>&copy; 2025 Stefano Filippi, Alberto Aquilini. Tutti i diritti riservati.</p>
+      <p><a href="mailto:filippistefano602@gmail.com">filippistefano602@gmail.com</a></p>
+    </div>
+  </footer>
+
+  <script>
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      const overlay = document.getElementById('overlay');
+      sidebar.classList.toggle('active');
+      overlay.classList.toggle('active');
+    }
+  </script>
+</body>
+</html>
